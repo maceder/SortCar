@@ -108,7 +108,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
+    agentSlope: 0
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 28c8380b98325f546ac5a105783d9d9d, type: 2}
 --- !u!1 &340386700
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 340386701}
   - component: {fileID: 340386703}
   - component: {fileID: 340386704}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (4)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,9 +248,9 @@ GameObject:
   - component: {fileID: 399602304}
   - component: {fileID: 399602306}
   - component: {fileID: 399602307}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (1)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,6 +490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 473663076}
+  - component: {fileID: 473663077}
   m_Layer: 0
   m_Name: BoxGrid
   m_TagString: Untagged
@@ -518,8 +519,57 @@ Transform:
   - {fileID: 995942083}
   - {fileID: 1538883524}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473663077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473663075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e73888f7ccda94f9325d6a58f974f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxModels:
+  - gridBox: {fileID: 1244608437}
+    leftQueue: 1
+    rightQueue: 5
+    isHaveCar: 0
+  - gridBox: {fileID: 399602303}
+    leftQueue: 2
+    rightQueue: 6
+    isHaveCar: 0
+  - gridBox: {fileID: 1444961307}
+    leftQueue: 7
+    rightQueue: 9
+    isHaveCar: 0
+  - gridBox: {fileID: 340386700}
+    leftQueue: 5
+    rightQueue: 7
+    isHaveCar: 0
+  - gridBox: {fileID: 1986763205}
+    leftQueue: 3
+    rightQueue: 1
+    isHaveCar: 0
+  - gridBox: {fileID: 1147955563}
+    leftQueue: 4
+    rightQueue: 2
+    isHaveCar: 0
+  - gridBox: {fileID: 995942081}
+    leftQueue: -1
+    rightQueue: 4
+    isHaveCar: 0
+  - gridBox: {fileID: 1384202416}
+    leftQueue: -1
+    rightQueue: 3
+    isHaveCar: 0
+  - gridBox: {fileID: 1538883522}
+    leftQueue: 6
+    rightQueue: 6
+    isHaveCar: 0
 --- !u!1 &498321031
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498321032}
   m_Layer: 0
-  m_Name: TeamYellow
+  m_Name: TeamYellowStartPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -544,11 +594,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498321031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.274017, y: -7.2205467, z: -81.87242}
+  m_LocalPosition: {x: -61.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 2070360367}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &531839272
 GameObject:
@@ -560,7 +610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531839273}
   m_Layer: 0
-  m_Name: TeamPurple
+  m_Name: TeamPurpleStartPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,11 +624,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531839272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.975983, y: -7.2205467, z: -81.87242}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 2070360367}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &577870814
 GameObject:
@@ -590,8 +640,10 @@ GameObject:
   m_Component:
   - component: {fileID: 577870815}
   - component: {fileID: 577870816}
+  - component: {fileID: 577870817}
+  - component: {fileID: 577870818}
   m_Layer: 0
-  m_Name: CarsTeam
+  m_Name: CarsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,7 +661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &577870816
 MonoBehaviour:
@@ -623,6 +675,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4f2dc73a00b71439a18afa1dd42c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &577870817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577870814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e23596608e7f469c9f9599a744b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   purpleCreatePosition: {fileID: 531839273}
   yellowCreatePosition: {fileID: 498321032}
   NumberOfTeam:
@@ -631,6 +695,20 @@ MonoBehaviour:
   - NumberOfCars: []
     CarCount: 5
   carPadding: 5
+--- !u!114 &577870818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577870814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6655c19a524224048be2063a3266a21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carsArragmentController: {fileID: 577870816}
+  carInstantieController: {fileID: 577870817}
 --- !u!1 &598176859
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,9 +1029,9 @@ GameObject:
   - component: {fileID: 995942082}
   - component: {fileID: 995942084}
   - component: {fileID: 995942085}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (7)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,9 +1208,9 @@ GameObject:
   - component: {fileID: 1147955564}
   - component: {fileID: 1147955566}
   - component: {fileID: 1147955567}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (6)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,9 +1321,9 @@ GameObject:
   - component: {fileID: 1244608438}
   - component: {fileID: 1244608440}
   - component: {fileID: 1244608441}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1356,9 +1434,9 @@ GameObject:
   - component: {fileID: 1384202417}
   - component: {fileID: 1384202419}
   - component: {fileID: 1384202420}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (8)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1469,9 +1547,9 @@ GameObject:
   - component: {fileID: 1444961308}
   - component: {fileID: 1444961310}
   - component: {fileID: 1444961311}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (2)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1582,9 +1660,9 @@ GameObject:
   - component: {fileID: 1538883523}
   - component: {fileID: 1538883525}
   - component: {fileID: 1538883526}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (9)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1889,9 +1967,9 @@ GameObject:
   - component: {fileID: 1986763206}
   - component: {fileID: 1986763208}
   - component: {fileID: 1986763209}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: grid1 (5)
-  m_TagString: ParkGrid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2072,6 +2150,8 @@ Transform:
   - {fileID: 1596252846}
   - {fileID: 1042621467}
   - {fileID: 543450652053711619}
+  - {fileID: 531839273}
+  - {fileID: 498321032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2243,7 +2323,7 @@ GameObject:
   - component: {fileID: 919132147855141541}
   - component: {fileID: 919132147855141542}
   m_Layer: 0
-  m_Name: RightButton
+  m_Name: RightButtonGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2293,7 +2373,7 @@ GameObject:
   - component: {fileID: 919132149593572808}
   - component: {fileID: 919132149593572809}
   m_Layer: 0
-  m_Name: LeftButton
+  m_Name: LeftButtonGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2486,7 +2566,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!33 &1672767824113574446
 MeshFilter:

@@ -2,5 +2,6 @@
 
 public enum EventName
 {
-    ButtonType
+    ButtonType,
+    CarGoingPosition,
 }
