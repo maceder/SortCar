@@ -24,21 +24,15 @@ public class CarMovementController : MonoBehaviour
     {
         Message.RemoveListener<Transform>(EventName.CarGoingPosition, GetGridPosition);
     }
-
-    void Update()
+    void GetGridPosition(Transform gridPosition)
     {
         if (startCarMovement)
         {
-            if (goGridTransform != null)
-            {
-                navMeshAgent.destination = goGridTransform.position;
-            }
+            Debug.Log(gridPosition);
+            goGridTransform = gridPosition;
+            navMeshAgent.SetDestination(goGridTransform.position);
+            startCarMovement = false;
+            navMeshAgent.velocity = Vector3.zero;
         }
-    }
-
-    void GetGridPosition(Transform gridPosition)
-    {
-        Debug.Log(gridPosition);
-        goGridTransform = gridPosition;
     }
 }
