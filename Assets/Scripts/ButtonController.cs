@@ -5,10 +5,22 @@ using UnityEngine;
 public class ButtonController : MonoBehaviour
 {
     public EnumButtonType enumButtonType;
-
+    public static int clickDelay = 1;
+    private bool isClick;
 
     public void ButtonClick()
     {
-        Message.Send<EnumButtonType>(EventName.ButtonType, enumButtonType);
+        if (!isClick)
+        {
+            Message.Send<EnumButtonType>(EventName.ButtonType, enumButtonType);
+            isClick = true;
+            StartCoroutine(DelayTimer());
+        }
+    }
+
+    IEnumerator DelayTimer()
+    {
+        yield return new WaitForSeconds(clickDelay);
+        isClick = false;
     }
 }
