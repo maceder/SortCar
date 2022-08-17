@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CarManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class CarManager : MonoBehaviour
     public GenerateCarGoingPosition generateCarGoingPos;
     private CarMovementController activeCarMovementController;
 
+    private int levelWinConditionCount = 0;
+
     public void Awake()
     {
         carInstantieController.CreateCar();
@@ -17,54 +20,47 @@ public class CarManager : MonoBehaviour
     {
         //ButtonController'dan gelen event
         Message.AddListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
+        Message.AddListener(EventName.CarInGridBox, LevelWinControl);
     }
 
     private void OnDisable()
     {
         //ButtonController'dan gelen event
         Message.RemoveListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
+        Message.AddListener(EventName.CarInGridBox, LevelWinControl);
+    }
+
+    private void LevelWinControl()
+    {
+        levelWinConditionCount++;
+
+        if(levelWinConditionCount == generateCarGoingPos.boxModels.Count())
+        {
+            Debug.Log("You Win");
+        }
     }
 
     void GenerateCarsArragment(EnumButtonType enumButtonType)
     {
-        switch (enumButtonType)
+        if (carsArragmentController.CheckListIsHaveCar(carInstantieController.NumberOfTeam, enumButtonType))
         {
-            case EnumButtonType.Left:
+            int childValue = enumButtonType == EnumButtonType.Left ? 0 : 1;
+            Transform bpos = enumButtonType == EnumButtonType.Left ? carInstantieController.purpleCreatePosition : carInstantieController.yellowCreatePosition;
+            EnumObjectColor enumObjectColor = enumButtonType == EnumButtonType.Left ? EnumObjectColor.Purple : EnumObjectColor.Yellow;
+            var boxModel = generateCarGoingPos.GetNextPosition(enumButtonType);
 
-                if (carsArragmentController.CheckListIsHaveCar(carInstantieController.NumberOfTeam, EnumButtonType.Left))
-                {
-                    var boxModel = generateCarGoingPos.GetNextPosition(EnumButtonType.Left);
-      
-                    CheckCarInCorrectGrid(0, boxModel, EnumObjectColor.Purple);
+            CheckCarInCorrectGrid(childValue, boxModel, enumObjectColor);
 
-                    carsArragmentController.SortByLeftCar(carInstantieController.NumberOfTeam, carInstantieController.purpleCreatePosition);
-
-                }
-                break;
-            case EnumButtonType.Right:
-                if (carsArragmentController.CheckListIsHaveCar(carInstantieController.NumberOfTeam, EnumButtonType.Right))
-                {
-                    var boxModel = generateCarGoingPos.GetNextPosition(EnumButtonType.Right);
-                
-                    CheckCarInCorrectGrid(1, boxModel, EnumObjectColor.Yellow);
-
-                    carsArragmentController.SortByRightCar(carInstantieController.NumberOfTeam, carInstantieController.yellowCreatePosition);
-
-                }
-                break;
+            carsArragmentController.SortCarQueue(childValue,carInstantieController.NumberOfTeam, bpos);
         }
+
     }
-
-
-
-
-
-    private void CheckCarInCorrectGrid(int childValue, BoxModel selectedBox, EnumObjectColor enumObjectColor)
+    private void CheckCarInCorrectGrid(int _childValue, BoxModel selectedBox, EnumObjectColor enumObjectColor)
     {
-        activeCarMovementController = carInstantieController.NumberOfTeam[childValue].NumberOfCars[0].GetComponent<CarMovementController>();
+        activeCarMovementController = carInstantieController.NumberOfTeam[_childValue].NumberOfCars[0].GetComponent<CarMovementController>();
         activeCarMovementController.startCarMovement = true;
 
-        activeCarMovementController.SetGridPosition(selectedBox.gridBox.transform, selectedBox.gridBoxColor==enumObjectColor);
+        activeCarMovementController.SetGridPosition(selectedBox.gridBox.transform, selectedBox.gridBoxColor == enumObjectColor);
 
     }
 }

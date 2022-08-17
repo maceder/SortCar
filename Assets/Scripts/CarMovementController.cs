@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
@@ -12,7 +10,6 @@ public class CarMovementController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Transform goGridTransform;
     private bool isCorrectGrid;
-
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -40,7 +37,10 @@ public class CarMovementController : MonoBehaviour
             {
                 navMeshAgent.isStopped = true;
                 if (isCorrectGrid)
+                {
                     transform.GetChild(1).gameObject.SetActive(true);
+                    Message.Send(EventName.CarInGridBox);
+                }
                 transform.DOLocalRotate(new Vector3(0, goGridTransform.parent.localEulerAngles.y, 0), .18f);
                 navMeshAgent.enabled = false;
                 transform.gameObject.AddComponent<NavMeshObstacle>().size = new Vector3(20, 8, 17);

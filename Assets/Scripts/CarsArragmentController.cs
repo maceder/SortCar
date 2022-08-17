@@ -7,35 +7,17 @@ public class CarsArragmentController : MonoBehaviour
 {
     public bool CheckListIsHaveCar(List<TeamCars> TeamCars, EnumButtonType enumButtonType)
     {
-        switch (enumButtonType)
-        {
-            case EnumButtonType.Left:
-                if (TeamCars[0].NumberOfCars.Count > 0)
-                    return true;
-                break;
-            case EnumButtonType.Right:
-                if (TeamCars[1].NumberOfCars.Count > 0)
-                    return true;
-                break;
-        }
-        return false;
-
+        if (EnumButtonType.Left == enumButtonType)
+            return TeamCars[0].NumberOfCars.Count > 0;
+        else
+            return TeamCars[1].NumberOfCars.Count > 0;
     }
-    public void SortByLeftCar(List<TeamCars> _TeamLeft, Transform _TeamRightPosition)
+    public void SortCarQueue(int childValue, List<TeamCars> _TeamLeft, Transform _TeamRightPosition)
     {
-        _TeamLeft[0].NumberOfCars.RemoveAt(0);
-        for (int i = 0; i < _TeamLeft[0].NumberOfCars.Count; i++)
+        _TeamLeft[childValue].NumberOfCars.RemoveAt(0);
+        for (int i = 0; i < _TeamLeft[childValue].NumberOfCars.Count; i++)
         {
-            _TeamLeft[0].NumberOfCars[i].transform.DOMove(_TeamRightPosition.position - ((_TeamLeft[0].NumberOfCars[i].transform.GetChild(0).GetComponent<Renderer>().bounds.size.z + 5) * i * Vector3.forward), .4f);
-        }
-    }
-    public void SortByRightCar(List<TeamCars> TeamRight, Transform TeamRightPosition)
-    {
-
-        TeamRight[1].NumberOfCars.RemoveAt(0);
-        for (int i = 0; i < TeamRight[1].NumberOfCars.Count; i++)
-        {
-            TeamRight[1].NumberOfCars[i].transform.DOMove(TeamRightPosition.position - ((TeamRight[1].NumberOfCars[i].transform.GetChild(0).GetComponent<Renderer>().bounds.size.z + 5) * i * Vector3.forward), .4f);
+            _TeamLeft[childValue].NumberOfCars[i].transform.DOMove(_TeamRightPosition.position - ((_TeamLeft[childValue].NumberOfCars[i].transform.GetChild(0).GetComponent<Renderer>().bounds.size.z + 5) * i * Vector3.forward), .4f);
         }
     }
 
