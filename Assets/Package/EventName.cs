@@ -3,5 +3,6 @@
 public enum EventName
 {
     ButtonType,
-    CarGoingPosition,
+    CarObjectTouchGrid,
+    WhichCarTouchObject,
 }

@@ -10,4 +10,7 @@ public class BoxModel
     public int leftQueue;
     public int rightQueue;
     public bool isHaveCar;
+    public EnumObjectColor gridBoxColor;
 }
+
+
