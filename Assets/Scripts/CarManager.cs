@@ -8,19 +8,27 @@ public class CarManager : MonoBehaviour
     public CarInstantieController carInstantieController;
 
 
+    private Transform carGoingThisTransform;
+    private CarMovementController activeCarMovementController;
+    public void Awake()
+    {
+        carInstantieController.CreateCar();
+    }
     private void OnEnable()
     {
+        Message.AddListener<Transform>(EventName.CarGoingPosition, GetGoGridPos);
         Message.AddListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
     }
 
     private void OnDisable()
     {
+        Message.RemoveListener<Transform>(EventName.CarGoingPosition, GetGoGridPos);
         Message.RemoveListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
     }
 
-    public void Awake()
+    private void GetGoGridPos(Transform activeGridPos)
     {
-        carInstantieController.CreateCar();
+        carGoingThisTransform = activeGridPos;
     }
 
     void GenerateCarsArragment(EnumButtonType enumButtonType)
@@ -28,12 +36,31 @@ public class CarManager : MonoBehaviour
         switch (enumButtonType)
         {
             case EnumButtonType.Left:
-                carInstantieController.NumberOfTeam[0].NumberOfCars[0].GetComponent<CarMovementController>().startCarMovement = true;
-                carsArragmentController.SortByLeftCar(carInstantieController.NumberOfTeam, carInstantieController.purpleCreatePosition);
+
+                if (carsArragmentController.CheckCarTeamListIn(carInstantieController.NumberOfTeam, EnumButtonType.Left))
+                {
+                    activeCarMovementController = carInstantieController.NumberOfTeam[0].NumberOfCars[0].GetComponent<CarMovementController>();
+                    activeCarMovementController.startCarMovement = true;
+                    activeCarMovementController.GetGridPosition(carGoingThisTransform);
+                    carsArragmentController.SortByLeftCar(carInstantieController.NumberOfTeam, carInstantieController.purpleCreatePosition);
+                }
+                else
+                    print("12");
+
+
                 break;
             case EnumButtonType.Right:
-                carInstantieController.NumberOfTeam[1].NumberOfCars[0].GetComponent<CarMovementController>().startCarMovement = true;
-                carsArragmentController.SortByRightCar(carInstantieController.NumberOfTeam, carInstantieController.yellowCreatePosition);
+                if (carsArragmentController.CheckCarTeamListIn(carInstantieController.NumberOfTeam, EnumButtonType.Right))
+                {
+                    activeCarMovementController = carInstantieController.NumberOfTeam[1].NumberOfCars[0].GetComponent<CarMovementController>();
+                    activeCarMovementController.startCarMovement = true;
+                    activeCarMovementController.GetGridPosition(carGoingThisTransform);
+                    carsArragmentController.SortByRightCar(carInstantieController.NumberOfTeam, carInstantieController.yellowCreatePosition);
+                }
+                else
+                    print("12");
+
+                
                 break;
         }
     }
