@@ -2,6 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/// <summary>
+/// TeamCars Modelinden kaç tane takým olacaðý ve oluþturulan takýmlarda 
+/// kaç araba olacaðý bilgisiyle arabalarýn oluþturulduðu yer
+/// </summary>
+
+
+[System.Serializable]
+public class TeamCars
+{
+    [HideInInspector]
+    public List<GameObject> NumberOfCars;
+    public int CarCount;
+}
+
 public class CarInstantieController : MonoBehaviour
 {
 
@@ -9,6 +25,10 @@ public class CarInstantieController : MonoBehaviour
     public List<TeamCars> NumberOfTeam;
     public float carPadding = 5;
 
+
+
+
+    //Resource klasörünün içindeki klasörlerden aldýðým prefablerin sonucunda arabalarý sýraladýðým yer
     public void CreateCar()
     {
         for (int i = 0; i < NumberOfTeam.Count; i++)
@@ -31,10 +51,4 @@ public class CarInstantieController : MonoBehaviour
         }
     }
 }
-[System.Serializable]
-public class TeamCars
-{
-    [HideInInspector]
-    public List<GameObject> NumberOfCars;
-    public int CarCount;
-}
+

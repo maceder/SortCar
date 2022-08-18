@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 
+
+
+/// <summary>
+/// Arabayý Haraket ettirdiðim yer
+/// </summary>
 public class CarMovementController : MonoBehaviour
 {
     [HideInInspector]
@@ -15,6 +20,8 @@ public class CarMovementController : MonoBehaviour
     }
 
 
+
+    //CarManager'dan aldýðým gidilicek park yeri bilgisiyle haraketin baþladýðý yer
     public void SetGridPosition(Transform gridPosition, bool _IsCorrectGrid)
     {
         if (startCarMovement)

@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+/// <summary>
+/// Bütün Car scriplerinin control edildiði yer
+/// </summary>
 public class CarManager : MonoBehaviour
 {
     public CarsArragmentController carsArragmentController;
     public CarInstantieController carInstantieController;
     public GenerateCarGoingPosition generateCarGoingPos;
-    private CarMovementController activeCarMovementController;
 
+
+    private CarMovementController activeCarMovementController;
     private int levelWinConditionCount = 0;
 
     public void Awake()
@@ -19,28 +22,37 @@ public class CarManager : MonoBehaviour
     private void OnEnable()
     {
         //ButtonController'dan gelen event
-        Message.AddListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
+        Message.AddListener<EnumButtonType>(EventName.ButtonType, CheckCarDestitaion);
+        //CarMovementController'dan gelen event
         Message.AddListener(EventName.CarInGridBox, LevelWinControl);
     }
 
     private void OnDisable()
     {
         //ButtonController'dan gelen event
-        Message.RemoveListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
+        Message.RemoveListener<EnumButtonType>(EventName.ButtonType, CheckCarDestitaion);
+        //CarMovementController'dan gelen event
         Message.RemoveListener(EventName.CarInGridBox, LevelWinControl);
     }
 
+
+    //Bütün Park alanlarý doldumu kontrol ettiðim yer
     private void LevelWinControl()
     {
         levelWinConditionCount++;
 
-        if(levelWinConditionCount == generateCarGoingPos.boxModels.Count())
+        if (levelWinConditionCount == generateCarGoingPos.boxModels.Count())
         {
-            Debug.Log("You Win");
+            GameManager.instance.LevelDone();
         }
     }
 
-    void GenerateCarsArragment(EnumButtonType enumButtonType)
+    
+
+    //Týklanýlan buton'daki bölümde araba varsa o bölümün özelliklerini SetCarDestination'a yolla
+
+    //O bölümdeki arabalarý hizalamasý için controllera emir ver
+    void CheckCarDestitaion(EnumButtonType enumButtonType)
     {
         if (carsArragmentController.CheckListIsHaveCar(carInstantieController.NumberOfTeam, enumButtonType))
         {
@@ -49,13 +61,14 @@ public class CarManager : MonoBehaviour
             EnumObjectColor enumObjectColor = enumButtonType == EnumButtonType.Left ? EnumObjectColor.Purple : EnumObjectColor.Yellow;
             var boxModel = generateCarGoingPos.GetNextPosition(enumButtonType);
 
-            CheckCarInCorrectGrid(childValue, boxModel, enumObjectColor);
+            SetCarDestination(childValue, boxModel, enumObjectColor);
 
-            carsArragmentController.SortCarQueue(childValue,carInstantieController.NumberOfTeam, bpos);
+            carsArragmentController.SortCarQueue(childValue, carInstantieController.NumberOfTeam, bpos);
         }
 
     }
-    private void CheckCarInCorrectGrid(int _childValue, BoxModel selectedBox, EnumObjectColor enumObjectColor)
+    //CheckCarDestitaion gelen bilgilerle arabayý yolla ve doðru renge gidip gitmediðini söyle
+    private void SetCarDestination(int _childValue, BoxModel selectedBox, EnumObjectColor enumObjectColor)
     {
         activeCarMovementController = carInstantieController.NumberOfTeam[_childValue].NumberOfCars[0].GetComponent<CarMovementController>();
         activeCarMovementController.startCarMovement = true;

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// ButtonControl'den gelen eventi yakalayýp gelen evente göre animasyon oynattýðým yer
+/// </summary>
 public class AnimatorManager : MonoBehaviour
 {
     public Animator leftButtonAnimator, leftBarrierAnimator;

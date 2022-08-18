@@ -1,11 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Butonlarda olan script event yoladýðým yer
+/// </summary>
 public class ButtonController : MonoBehaviour
 {
     public EnumButtonType enumButtonType;
-    public static int clickDelay = 2;
+    public static float clickDelay = 1.5f;
     private bool isClick;
 
     public void ButtonClick()

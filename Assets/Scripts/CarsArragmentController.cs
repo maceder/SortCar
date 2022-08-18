@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
+/// <summary>
+/// Barierler kalktýktan sonra geri kalan arabalarý hizaladýðým yer
+/// </summary>
+
+
 public class CarsArragmentController : MonoBehaviour
 {
+    //CarManager'a o bölümde araba varmý bilgisini döndürüyorum
     public bool CheckListIsHaveCar(List<TeamCars> TeamCars, EnumButtonType enumButtonType)
     {
         if (EnumButtonType.Left == enumButtonType)
@@ -12,6 +19,8 @@ public class CarsArragmentController : MonoBehaviour
         else
             return TeamCars[1].NumberOfCars.Count > 0;
     }
+
+    //Carmanager söylediði zaman hizzalýyorum
     public void SortCarQueue(int childValue, List<TeamCars> _TeamLeft, Transform _TeamRightPosition)
     {
         _TeamLeft[childValue].NumberOfCars.RemoveAt(0);
@@ -20,7 +29,6 @@ public class CarsArragmentController : MonoBehaviour
             _TeamLeft[childValue].NumberOfCars[i].transform.DOMove(_TeamRightPosition.position - ((_TeamLeft[childValue].NumberOfCars[i].transform.GetChild(0).GetComponent<Renderer>().bounds.size.z + 5) * i * Vector3.forward), .4f);
         }
     }
-
 }
 
 
