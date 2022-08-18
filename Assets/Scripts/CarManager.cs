@@ -27,7 +27,7 @@ public class CarManager : MonoBehaviour
     {
         //ButtonController'dan gelen event
         Message.RemoveListener<EnumButtonType>(EventName.ButtonType, GenerateCarsArragment);
-        Message.AddListener(EventName.CarInGridBox, LevelWinControl);
+        Message.RemoveListener(EventName.CarInGridBox, LevelWinControl);
     }
 
     private void LevelWinControl()

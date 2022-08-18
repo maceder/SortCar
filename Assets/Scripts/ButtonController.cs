@@ -5,7 +5,7 @@ using UnityEngine;
 public class ButtonController : MonoBehaviour
 {
     public EnumButtonType enumButtonType;
-    public static int clickDelay = 1;
+    public static int clickDelay = 2;
     private bool isClick;
 
     public void ButtonClick()

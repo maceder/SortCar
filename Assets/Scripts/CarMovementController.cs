@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 
-
 public class CarMovementController : MonoBehaviour
 {
     [HideInInspector]
@@ -26,8 +25,6 @@ public class CarMovementController : MonoBehaviour
             isCorrectGrid = _IsCorrectGrid;
         }
     }
-
-
     //Son kýsma gelince gridin rotationunu alýyor ve 
     private void Update()
     {
@@ -40,14 +37,22 @@ public class CarMovementController : MonoBehaviour
                 {
                     transform.GetChild(1).gameObject.SetActive(true);
                     Message.Send(EventName.CarInGridBox);
+                    transform.DOLocalRotate(new Vector3(0, goGridTransform.parent.localEulerAngles.y, 0), .18f);
+                    navMeshAgent.enabled = false;
+                    transform.gameObject.AddComponent<NavMeshObstacle>().size = new Vector3(20, 8, 17);
+                    transform.GetComponent<NavMeshObstacle>().carving = true;
+                    goGridTransform = null;
                 }
-                transform.DOLocalRotate(new Vector3(0, goGridTransform.parent.localEulerAngles.y, 0), .18f);
-                navMeshAgent.enabled = false;
-                transform.gameObject.AddComponent<NavMeshObstacle>().size = new Vector3(20, 8, 17);
-                transform.GetComponent<NavMeshObstacle>().carving = true;
-                goGridTransform = null;
+                else
+                    GameManager.instance.GameOver();
+
             }
         }
+    }
 
+
+    public void StopNavMeshAgent()
+    {
+        navMeshAgent.isStopped = true;
     }
 }

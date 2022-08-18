@@ -98,6 +98,9 @@ GameObject:
   - component: {fileID: 5532967877525910774}
   - component: {fileID: -134222575470366952}
   - component: {fileID: -5996033218540698649}
+  - component: {fileID: -5996873505733142548}
+  - component: {fileID: -2525161457782981907}
+  - component: {fileID: -9136545402672569116}
   m_Layer: 0
   m_Name: Car3
   m_TagString: Untagged
@@ -143,7 +146,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5532967877525910775}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.5
   m_Speed: 100
   m_Acceleration: 3000
   avoidancePriority: 50
@@ -152,10 +155,51 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.1
+  m_Height: 0.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &-5996873505733142548
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532967877525910775}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 17}
+  m_Center: {x: 0, y: 5, z: 0}
+--- !u!54 &-2525161457782981907
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532967877525910775}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-9136545402672569116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532967877525910775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ff7fadfc117d74e99dce1b741f5ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2766368486054011388
 PrefabInstance:
   m_ObjectHideFlags: 0

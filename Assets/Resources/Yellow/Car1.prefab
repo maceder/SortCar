@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6052821623665887089}
   - component: {fileID: -2025046698708092753}
   - component: {fileID: -471822025018709566}
+  - component: {fileID: -4872101732670156613}
   m_Layer: 0
   m_Name: Car1
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,10 +66,23 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &-4872101732670156613
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6052821623665887090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 17}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &6052821623682483260
 GameObject:
   m_ObjectHideFlags: 0
