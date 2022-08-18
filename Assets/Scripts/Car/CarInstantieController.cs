@@ -6,7 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// TeamCars Modelinden kaç tane takým olacaðý ve oluþturulan takýmlarda 
-/// kaç araba olacaðý bilgisiyle arabalarýn oluþturulduðu yer
+/// kaç araba olacaðý bilgisiyle, arabalarýn oluþturulduðu yer
 /// </summary>
 
 
@@ -35,7 +35,6 @@ public class CarInstantieController : MonoBehaviour
         {
             for (int j = 0; j < NumberOfTeam[i].CarCount; j++)
             {
-
                 GameObject obj = null;
                 int randomValue = Random.Range(1, 5);
                 if (i == 0)

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Çýktýðý yola göre sýradaki aracýn park edeceði konumu veren methot ve konumlarýn tutulduðu yer
+/// </summary>
+
+
 public class GenerateCarGoingPosition : MonoBehaviour
 {
     [SerializeField]
