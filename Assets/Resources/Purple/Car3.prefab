@@ -96,11 +96,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5532967877525910774}
-  - component: {fileID: -134222575470366952}
   - component: {fileID: -5996033218540698649}
   - component: {fileID: -5996873505733142548}
   - component: {fileID: -2525161457782981907}
   - component: {fileID: -9136545402672569116}
+  - component: {fileID: 8663235339099301105}
   m_Layer: 0
   m_Name: Car3
   m_TagString: Untagged
@@ -124,19 +124,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-134222575470366952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5532967877525910775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7aa192f3c268949aa7659ebcc5f81c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startCarMovement: 0
 --- !u!195 &-5996033218540698649
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -200,6 +187,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ff7fadfc117d74e99dce1b741f5ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8663235339099301105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532967877525910775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fd022f56e9d054b9d28f7107ec88e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshAgentMovementSpeed: 75
+  startCarMovement: 0
 --- !u!1001 &2766368486054011388
 PrefabInstance:
   m_ObjectHideFlags: 0

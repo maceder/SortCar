@@ -5,10 +5,11 @@ using DG.Tweening;
 
 
 /// <summary>
-/// Arabayý Haraket ettirdiðim yer
+/// Arabalarý kontrol ettiðim yer
 /// </summary>
-public class CarMovementController : MonoBehaviour
+public class CarController : MonoBehaviour
 {
+    public float navMeshAgentMovementSpeed = 75;
     [HideInInspector]
     public bool startCarMovement;
     private NavMeshAgent navMeshAgent;
@@ -17,6 +18,7 @@ public class CarMovementController : MonoBehaviour
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = navMeshAgentMovementSpeed;
     }
 
 
@@ -42,11 +44,10 @@ public class CarMovementController : MonoBehaviour
                 navMeshAgent.isStopped = true;
                 if (isCorrectGrid)
                 {
-                    transform.GetChild(1).gameObject.SetActive(true);
-                    Message.Send(EventName.CarInGridBox);
-                    transform.DOLocalRotate(new Vector3(0, goGridTransform.parent.localEulerAngles.y, 0), .18f);
+                    TickAnimation();
                     navMeshAgent.enabled = false;
                     transform.gameObject.AddComponent<NavMeshObstacle>().size = new Vector3(20, 8, 17);
+
                     transform.GetComponent<NavMeshObstacle>().carving = true;
                     goGridTransform = null;
                 }
@@ -57,6 +58,20 @@ public class CarMovementController : MonoBehaviour
         }
     }
 
+    //Ayný renk park alaný animation
+    private void TickAnimation()
+    {
+        transform.GetChild(1).gameObject.SetActive(true);
+        Message.Send<GameObject>(EventName.CarInGridBox, this.gameObject);
+        transform.DOLocalRotate(new Vector3(0, goGridTransform.parent.localEulerAngles.y, 0), .18f);
+    }
+
+    //Finish Scale Animation
+    public void CarScaleAnimation()
+    {
+        Sequence mySequence = DOTween.Sequence();
+        mySequence.Append(transform.DOScale(transform.localScale.x + 0.25f, 0.3f)).Append(transform.DOScale(transform.localScale.x, 0.3f));
+    }
 
     public void StopNavMeshAgent()
     {

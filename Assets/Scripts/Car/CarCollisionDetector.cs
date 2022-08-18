@@ -13,8 +13,8 @@ public class CarCollisionDetector : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            other.gameObject.GetComponent<CarMovementController>().StopNavMeshAgent();
-            transform.GetComponent<CarMovementController>().StopNavMeshAgent();
+            other.gameObject.GetComponent<CarController>().StopNavMeshAgent();
+            transform.GetComponent<CarController>().StopNavMeshAgent();
             GameManager.instance.GameOver();
         }
     }
